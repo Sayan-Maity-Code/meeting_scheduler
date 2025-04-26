@@ -28,8 +28,8 @@ To set up the project locally:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/your-username/meeting_scheduler.git
-   cd meeting_scheduler
+   git clone https://github.com/Sayan-Maity-Code/meeting_scheduler.git
+   cd project
    ```
 
 2. **Install dependencies**:
@@ -50,13 +50,25 @@ To set up the project locally:
 4. **Start the server**:
 
    ```bash
-   npm start
+   npm run start
    ```
 
 5. **Access the API**:
    The server will run at `http://localhost:<PORT>`.
 
 ---
+## Screenshots
+## First comes login page
+![login page](https://github.com/Sayan-Maity-Code/meeting_scheduler/blob/main/Readme_img/login_page.png)
+## If not singned up first then go to signup page
+![Sign Up](https://github.com/Sayan-Maity-Code/meeting_scheduler/blob/main/Readme_img/signup_page.png)
+## Profile
+![Profile](https://github.com/Sayan-Maity-Code/meeting_scheduler/blob/main/Readme_img/profile.png)
+## That's how the dashboard looks like at the initial stage before creating any meeting schedule
+![Dashboard](https://github.com/Sayan-Maity-Code/meeting_scheduler/blob/main/Readme_img/Dashboard_meetsync.png)
+## That's how it looks after creating a meeting
+![Meeting Created](https://github.com/Sayan-Maity-Code/meeting_scheduler/blob/main/Readme_img/Create%20meeting%20.png)
+
 
 ## **API Endpoints**
 
