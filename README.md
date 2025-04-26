@@ -1,126 +1,95 @@
-# Meeting Scheduler API Documentation
+# Meeting Scheduler 
 
-This document provides an overview of the routes available in the Meeting Scheduler API, how they interact with the database schemas, and the features they implement.
-
----
-
-## **Authentication Routes**
-
-### **Register a New User**
-- **Route**: `POST /api/auth/register`
-- **Description**: Registers a new user by creating a record in the `User` schema.
-- **Schema Interaction**:
-  - Checks if the email already exists in the `User` collection.
-  - Creates a new user with hashed password using the `User` schema.
-- **Response**: Returns a JWT token in an HTTP-only cookie.
+The Meeting Scheduler is a service designed to manage user authentication, user profiles, and meeting scheduling. Built with ReactJS, Node.js, Express, and MongoDB, it provides a seamless way to organize and manage meetings while ensuring no scheduling conflicts.
 
 ---
 
-### **Login User**
-- **Route**: `POST /api/auth/login`
-- **Description**: Authenticates a user and issues a JWT token.
-- **Schema Interaction**:
-  - Finds the user by email in the `User` schema.
-  - Verifies the password using the `comparePassword` method in the `User` schema.
-- **Response**: Returns a JWT token in an HTTP-only cookie.
+## **Features**
+
+- **User Authentication**: Secure registration, login, and logout using JWT tokens.
+- **User Profiles**: Retrieve and manage user profiles.
+- **User Search**: Search for users by name or email.
+- **Meeting Management**: Create, update, delete, and respond to meeting invitations.
+- **Conflict Validation**: Prevents overlapping meetings for users.
+- **Health Check**: Verifies the server's operational status.
 
 ---
 
-### **Logout User**
-- **Route**: `POST /api/auth/logout`
-- **Description**: Logs out the user by clearing the JWT cookie.
-- **Schema Interaction**: None.
-- **Response**: Clears the JWT cookie.
+## **How It Works**
+
+The API interacts with MongoDB schemas for `User` and `Meeting` to store and retrieve data. It ensures secure authentication and provides endpoints to manage users and meetings effectively.
 
 ---
 
-### **Get User Profile**
-- **Route**: `GET /api/auth/profile`
-- **Description**: Retrieves the authenticated user's profile.
-- **Schema Interaction**:
-  - Fetches the user details from the `User` schema using the user ID from the JWT token.
-- **Response**: Returns the user's name and email.
+## **Installation**
+
+To set up the project locally:
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/your-username/meeting_scheduler.git
+   cd meeting_scheduler
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**:
+   Create a `.env` file in the root directory and configure the following variables:
+
+   ```
+   MONGO_URI=<your-mongodb-connection-string>
+   JWT_SECRET=<your-jwt-secret>
+   PORT=<your-preferred-port>
+   ```
+
+4. **Start the server**:
+
+   ```bash
+   npm start
+   ```
+
+5. **Access the API**:
+   The server will run at `http://localhost:<PORT>`.
 
 ---
 
-## **User Routes**
+## **API Endpoints**
 
-### **Search Users**
-- **Route**: `GET /api/users/search`
-- **Description**: Searches for users by name or email.
-- **Schema Interaction**:
-  - Queries the `User` schema using a regex search on the `name` and `email` fields.
-  - Excludes the current user from the results.
-- **Response**: Returns a list of matching users.
+### **Authentication Routes**
 
----
+- **Register a New User**: `POST /api/auth/register`
+- **Log In a User**: `POST /api/auth/login`
+- **Log Out a User**: `POST /api/auth/logout`
+- **Get User Profile**: `GET /api/auth/profile`
 
-## **Meeting Routes**
+### **User Routes**
 
-### **Create a New Meeting**
-- **Route**: `POST /api/meetings`
-- **Description**: Creates a new meeting and validates conflicts.
-- **Schema Interaction**:
-  - Creates a new meeting in the `Meeting` schema.
-  - Validates attendee emails against the `User` schema.
-  - Checks for scheduling conflicts using the `hasConflict` method in the `Meeting` schema.
-- **Response**: Returns the created meeting.
+- **Search Users**: `GET /api/users/search`
 
----
+### **Meeting Routes**
 
-### **Get All Meetings**
-- **Route**: `GET /api/meetings`
-- **Description**: Retrieves all meetings where the user is an organizer or attendee.
-- **Schema Interaction**:
-  - Queries the `Meeting` schema for meetings where the user is the organizer or an attendee.
-  - Populates the `organizer` and `attendees` fields with user details from the `User` schema.
-- **Response**: Returns a list of meetings.
+- **Create a New Meeting**: `POST /api/meetings`
+- **Get All Meetings**: `GET /api/meetings`
+- **Get Meeting by ID**: `GET /api/meetings/:id`
+- **Update a Meeting**: `PUT /api/meetings/:id`
+- **Delete a Meeting**: `DELETE /api/meetings/:id`
+- **Respond to Meeting Invitation**: `PUT /api/meetings/:id/respond`
 
----
+### **Health Check**
 
-### **Get Meeting by ID**
-- **Route**: `GET /api/meetings/:id`
-- **Description**: Retrieves a specific meeting by its ID.
-- **Schema Interaction**:
-  - Fetches the meeting from the `Meeting` schema by its ID.
-  - Populates the `organizer` and `attendees` fields with user details from the `User` schema.
-- **Response**: Returns the meeting details.
-
----
-
-### **Update Meeting**
-- **Route**: `PUT /api/meetings/:id`
-- **Description**: Updates a meeting's details.
-- **Schema Interaction**:
-  - Updates the meeting in the `Meeting` schema.
-  - Validates attendee emails against the `User` schema.
-  - Checks for scheduling conflicts using the `hasConflict` method in the `Meeting` schema.
-- **Response**: Returns the updated meeting.
-
----
-
-### **Delete Meeting**
-- **Route**: `DELETE /api/meetings/:id`
-- **Description**: Deletes a meeting.
-- **Schema Interaction**:
-  - Deletes the meeting from the `Meeting` schema by its ID.
-- **Response**: Confirms the deletion.
-
----
-
-### **Respond to Meeting Invitation**
-- **Route**: `PUT /api/meetings/:id/respond`
-- **Description**: Updates the user's attendance status for a meeting.
-- **Schema Interaction**:
-  - Updates the `attendees` array in the `Meeting` schema with the user's response.
-  - Checks for scheduling conflicts if the user accepts the invitation.
-- **Response**: Returns the updated meeting.
+- **Check Server Health**: `GET /api/health`
 
 ---
 
 ## **Database Schemas**
 
 ### **User Schema**
+
 - **Fields**:
   - `name`: User's full name.
   - `email`: User's email address.
@@ -129,9 +98,8 @@ This document provides an overview of the routes available in the Meeting Schedu
 - **Methods**:
   - `comparePassword`: Compares a plaintext password with the hashed password.
 
----
-
 ### **Meeting Schema**
+
 - **Fields**:
   - `title`: Title of the meeting.
   - `description`: Description of the meeting.
@@ -146,12 +114,32 @@ This document provides an overview of the routes available in the Meeting Schedu
 
 ---
 
-## **Health Check Route**
+## **Usage Examples**
 
-### **Check Server Health**
-- **Route**: `GET /api/health`
-- **Description**: Verifies that the server is running.
-- **Schema Interaction**: None.
-- **Response**: Returns a status message.
+### **Register a New User**
+
+```bash
+curl -X POST http://localhost:<PORT>/api/auth/register \
+-H "Content-Type: application/json" \
+-d '{"name": "John Doe", "email": "john@example.com", "password": "password123"}'
+```
+
+### **Create a New Meeting**
+
+```bash
+curl -X POST http://localhost:<PORT>/api/meetings \
+-H "Content-Type: application/json" \
+-d '{"title": "Team Meeting", "startTime": "2023-10-01T10:00:00Z", "endTime": "2023-10-01T11:00:00Z", "attendees": ["jane@example.com"]}'
+```
 
 ---
+
+## **Contributing**
+
+Contributions are welcome! Please fork the repository and submit a pull request with your changes.
+
+---
+
+## **License**
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.

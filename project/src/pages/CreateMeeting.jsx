@@ -270,7 +270,7 @@ const CreateMeeting = () => {
                   value={formData.location}
                   onChange={handleChange}
                   className="pl-10 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
-                  placeholder="Conference Room A or Zoom Meeting"
+                  placeholder="Online Meeting"
                 />
               </div>
             </div>
