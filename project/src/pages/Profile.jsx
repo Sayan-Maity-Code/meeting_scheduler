@@ -52,7 +52,7 @@ const Profile = () => {
                 </div>
               </div>
               
-              <div>
+              {/* <div>
                 <label className="block text-sm font-medium text-gray-500">Account Created</label>
                 <div className="mt-1 flex items-center">
                   <Calendar className="h-5 w-5 text-gray-400 mr-2" />
@@ -60,7 +60,7 @@ const Profile = () => {
                     {new Date(user?.createdAt).toLocaleDateString()}
                   </p>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           
@@ -75,70 +75,6 @@ const Profile = () => {
                 <LogOut className="h-5 w-5 mr-2" />
                 Sign Out
               </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div className="mt-6 bg-white rounded-lg shadow-md p-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Preferences</h3>
-        
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-800 font-medium">Email Notifications</p>
-              <p className="text-sm text-gray-500">Receive email notifications for meetings</p>
-            </div>
-            <div className="relative inline-block w-12 h-6">
-              <input 
-                type="checkbox" 
-                id="toggle-email" 
-                className="sr-only"
-                defaultChecked
-              />
-              <label 
-                htmlFor="toggle-email"
-                className="block h-6 w-12 rounded-full bg-gray-300 cursor-pointer transition-colors duration-200 ease-in-out peer-checked:bg-purple-600"
-              ></label>
-              <span className="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform duration-200 ease-in-out transform translate-x-0 peer-checked:translate-x-6"></span>
-            </div>
-          </div>
-          
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-800 font-medium">Calendar Integration</p>
-              <p className="text-sm text-gray-500">Sync meetings with your calendar</p>
-            </div>
-            <div className="relative inline-block w-12 h-6">
-              <input 
-                type="checkbox" 
-                id="toggle-calendar" 
-                className="sr-only"
-              />
-              <label 
-                htmlFor="toggle-calendar"
-                className="block h-6 w-12 rounded-full bg-gray-300 cursor-pointer transition-colors duration-200 ease-in-out peer-checked:bg-purple-600"
-              ></label>
-              <span className="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform duration-200 ease-in-out transform translate-x-0 peer-checked:translate-x-6"></span>
-            </div>
-          </div>
-          
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-800 font-medium">Dark Mode</p>
-              <p className="text-sm text-gray-500">Switch to dark theme</p>
-            </div>
-            <div className="relative inline-block w-12 h-6">
-              <input 
-                type="checkbox" 
-                id="toggle-dark-mode" 
-                className="sr-only"
-              />
-              <label 
-                htmlFor="toggle-dark-mode"
-                className="block h-6 w-12 rounded-full bg-gray-300 cursor-pointer transition-colors duration-200 ease-in-out peer-checked:bg-purple-600"
-              ></label>
-              <span className="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform duration-200 ease-in-out transform translate-x-0 peer-checked:translate-x-6"></span>
             </div>
           </div>
         </div>

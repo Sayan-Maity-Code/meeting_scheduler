@@ -26,18 +26,12 @@ const Navbar = ({ toggleSidebar }) => {
             >
               <MenuIcon size={24} />
             </button>
-            <Link to="/" className="ml-2 md:ml-0">
-              <div className="flex items-center">
-                <Calendar className="h-8 w-8 text-purple-500" />
-                <span className="ml-2 text-xl font-semibold text-purple-400">MeetSync</span>
-              </div>
-            </Link>
           </div>
           
           <div className="flex items-center space-x-4">
-            <button className="p-1 rounded-full text-purple-400 hover:text-purple-300 focus:outline-none">
+            {/* <button className="p-1 rounded-full text-purple-400 hover:text-purple-300 focus:outline-none">
               <Bell size={20} />
-            </button>
+            </button> */}
             
             <div className="relative">
               <button

@@ -57,18 +57,6 @@ const Sidebar = () => {
           </NavLink>
         </nav>
       </div>
-      
-      <div className="p-4 border-t border-purple-800">
-        <div className="flex items-center">
-          <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center">
-            <Settings className="h-5 w-5 text-white" />
-          </div>
-          <div className="ml-3">
-            <p className="text-sm font-medium text-white">App Settings</p>
-            <p className="text-xs text-purple-400">v1.0.0</p>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
